@@ -25,6 +25,7 @@ int main()
     server_address.sun_family = AF_UNIX;
     strcpy(server_address.sun_path, "server_socket");
     server_len = sizeof(server_address);
+    //套接字应该存储了地址、端口这些信息，从这句可以看出来
     bind(server_sockfd, (struct sockaddr *)&server_address, server_len);
 
 /*  创建一个连接队列，并且等待客户端连接.  */
@@ -39,6 +40,7 @@ int main()
 
 	//client_address的值从哪里来
         client_len = sizeof(client_address);
+	//创建了一个新的套接字用于数据传输，套接字是给程序用的用于跟操作系统交互数据的符号
         client_sockfd = accept(server_sockfd, 
             (struct sockaddr *)&client_address, &client_len);
 
